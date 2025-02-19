@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title>Redscale Feedback</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("UaQfa6HVrPba5L6Cn");  // Pastikan publicKey sudah benar
+        })();
+
+        // Fungsi untuk mengirim email
+        function sendMail(event) {
+            event.preventDefault();  // Mencegah form submit default
+
+            let parms = {
+                from_name: document.getElementById("name").value,
+                isi: document.getElementById("email").value,
+                message: document.getElementById("yahya").value,  // Perbaiki 'massage' menjadi 'message'
+            };
+
+            emailjs.send("service_mtdlx3d", "template_ol21m1n", parms)
+                .then(function() {
+                    swal("Berhasil terkirim!", "Makasih ges ^_^", "success");
+                })
+                .catch(function(error) {
+                    alert("Failed to send email: " + error);
+                });
+        }
+
+        window.onload = function() {
+            // Menambahkan event listener ke tombol submit
+            document.getElementById("submit-button").addEventListener("click", sendMail);
+        };
+    </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+    <div class="background">
+        <video autoplay muted loop class="video">
+            <source src="asset/2.mp4" type="video/mp4" class="v"></source>
+        </video>
+        
+        <div class="login">
+            <div class="login-form">
+                <h1>Kotak Saran</h1>
+                <form>
+                    <input type="text" id="name" placeholder="Nama Kamu"><br><br>
+                    <input type="text" id="email" placeholder="Request Lagu - Artist"><br><br>
+                    <textarea name="yahya" id="yahya" placeholder="Feedback / saran kamu"></textarea><br><br>
+                    
+                    <!-- Ganti tombol dengan id untuk menangani klik -->
+                    <button type="button" id="submit-button">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
